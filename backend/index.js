@@ -23,6 +23,15 @@ app.use(express.json()); // Middleware to parse incoming JSON requests
 app.use(express.urlencoded({extended:true})) 
 app.use(cors(corsOption))
 
+app.use('/api', async (req, res, next) => {
+    try {
+        await connectDB();
+        next();
+    } catch {
+        res.status(503).json({ message: 'Database unavailable' });
+    }
+});
+
 
 const PORT = process.env.PORT || 5000; // Set the port to an environment variable or default to 5000
 
@@ -32,7 +41,6 @@ app.use("/api/v1/message", messageRoute );
 // localhost:8080/api/v1/user/register
 
 server.listen(PORT, () =>{
-    connectDB(); // Call the connectDB function to connect to the database
     console.log(`Server is running on port ${PORT}`); // Log a message when the server starts
 })
 
