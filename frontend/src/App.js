@@ -5,10 +5,10 @@ import Login from './components/Login';
 import LandingPage from './components/LandingPage';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
-import axios from 'axios';
 import io from 'socket.io-client'
 import { setAuthUser, setOnlineUsers, setSocket } from './redux/userSlice';
 import { setActiveSocket } from './utils/socket';
+import { api, API_URL } from './utils/api';
 
 function App() {
    const { authUser } = useSelector((store) => store.user);
@@ -19,7 +19,7 @@ function App() {
    useEffect(() => {
      dispatch(setOnlineUsers([]));
 
-     axios.get('http://localhost:5000/api/v1/user/me', { withCredentials: true })
+    api.get('/api/v1/user/me')
        .then((response) => dispatch(setAuthUser(response.data)))
        .catch(() => dispatch(setAuthUser(null)))
        .finally(() => setAuthChecked(true));
@@ -27,7 +27,7 @@ function App() {
 
    useEffect(() => {
      if (authUserId) {
-          const socket = io('http://localhost:5000',{
+          const socket = io(API_URL,{
              query:{
           userId:authUserId
              }

@@ -1,4 +1,5 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const webpack = require('webpack');
 
 module.exports = {
   entry: './src/index.js',
@@ -27,5 +28,10 @@ module.exports = {
     historyApiFallback: true, // this feature is for routing
     hot: true
   },
-  plugins: [new HtmlWebpackPlugin({ template: './public/index.html' })]
+  plugins: [
+    new HtmlWebpackPlugin({ template: './public/index.html' }),
+    new webpack.DefinePlugin({
+      'process.env.API_URL': JSON.stringify(process.env.API_URL || ''),
+    }),
+  ]
 };

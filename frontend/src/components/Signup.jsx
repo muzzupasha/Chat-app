@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import toast from 'react-hot-toast';
-import axios from 'axios'
+import { api } from '../utils/api';
 
 // These names match the fields expected by the backend register controller.
 const initialForm = {
@@ -38,7 +38,7 @@ function Signup() {
     setSubmitted(true);
     
     // Send form to POST /api/v1/user/register when the API request is connected.
-    const res = await axios.post('http://localhost:5000/api/v1/user/register', form,{
+    const res = await api.post('/api/v1/user/register', form,{
       headers:{
         'Content-Type':'application/json'
       },

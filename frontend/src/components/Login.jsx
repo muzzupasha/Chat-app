@@ -1,9 +1,9 @@
 import { useState } from 'react';
 import toast from 'react-hot-toast';
 import { Link , useNavigate } from 'react-router-dom';
-import axios from 'axios';
 import { useDispatch } from 'react-redux';
 import { setAuthUser } from '../redux/userSlice';
+import { api } from '../utils/api';
 
 // These names match the fields expected by the backend login controller.
 const initialForm = {
@@ -32,7 +32,7 @@ function Login() {
     setSubmitted(true);
     
     // Send form to POST /api/v1/user/register when the API request is connected.
-    const res = await axios.post('http://localhost:5000/api/v1/user/login', form,{
+    const res = await api.post('/api/v1/user/login', form,{
       headers:{
         'Content-Type':'application/json'
       },

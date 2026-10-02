@@ -11,7 +11,7 @@ import initializeSocket from './socket/socket.js';
 dotenv.config(); // Load environment variables from the .env file
 
 const corsOption = {
- origin:'http://localhost:3000',
+ origin: process.env.CLIENT_URL || 'http://localhost:3000',
  credentials:true
 }
 

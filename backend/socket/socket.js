@@ -9,8 +9,9 @@ export const getIO = () => io;
 const initializeSocket = (server) => {
   io = new Server(server, {
     cors: {
-      origin: "http://localhost:3000",
+      origin: process.env.CLIENT_URL || "http://localhost:3000",
       methods: ["GET", "POST"],
+      credentials: true,
     },
   });
 

@@ -3,10 +3,10 @@ import { useDispatch, useSelector } from "react-redux";
 import OtherUsers from "./OtherUsers";
 import { FiLogOut, FiSearch, FiSettings } from "react-icons/fi";
 import { IoChatbubblesOutline } from "react-icons/io5";
-import axios from "axios";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import { setAuthUser } from "../redux/userSlice";
+import { api } from "../utils/api";
 
 const Sidebar = ({ className = '' }) => {
   const [search, setSearch] = useState("");
@@ -21,7 +21,7 @@ const Sidebar = ({ className = '' }) => {
 
   const logoutHandler = async () => {
     try {
-      const res = await axios.get("http://localhost:5000/api/v1/user/Logout");
+      const res = await api.get("/api/v1/user/Logout");
       navigate("/login");
       toast.success(res.data.message);
       dispatch(setAuthUser(null));

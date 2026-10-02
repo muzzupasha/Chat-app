@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { FiPaperclip, FiSend, FiSmile } from "react-icons/fi";
-import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { setMessages } from "../redux/userSlice";
+import { api } from "../utils/api";
 
 
 const SendInput = () => {
@@ -17,8 +17,8 @@ const SendInput = () => {
     if (!receiverId || !message.trim()) return;
 
     try {
-      const res = await axios.post(
-        `http://localhost:5000/api/v1/message/send/${receiverId}`,
+      const res = await api.post(
+        `/api/v1/message/send/${receiverId}`,
         { message },
         {
           withCredentials: true,
