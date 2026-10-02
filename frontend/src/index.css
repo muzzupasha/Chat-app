@@ -1,0 +1,37 @@
+@import "tailwindcss";
+@plugin "daisyui";
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@700;800&display=swap');
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+  overflow: hidden;
+}
+
+.app-viewport {
+  height: 100vh;
+  max-height: 100vh;
+}
+
+@supports (height: 100dvh) {
+  .app-viewport {
+    height: 100dvh;
+    max-height: 100dvh;
+  }
+}
+
+body {
+  margin: 0;
+  font-family: 'DM Sans', sans-serif;
+}
+
+.landing-page h1,
+.landing-page h2,
+.landing-page .font-black {
+  font-family: 'Manrope', 'DM Sans', sans-serif;
+}
