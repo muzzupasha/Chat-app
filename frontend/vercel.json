@@ -2,11 +2,11 @@
   "rewrites": [
     {
       "source": "/api/:path*",
-      "destination": "https://chat-965tgi7mi-muzzupashas-projects.vercel.app/api/:path*"
+      "destination": "https://chat-app-8hqwq868f-muzzupashas-projects.vercel.app/api/:path*"
     },
     {
       "source": "/socket.io/:path*",
-      "destination": "https://chat-965tgi7mi-muzzupashas-projects.vercel.app/socket.io/:path*"
+      "destination": "https://chat-app-8hqwq868f-muzzupashas-projects.vercel.app/socket.io/:path*"
     },
     { "source": "/(.*)", "destination": "/" }
   ]
